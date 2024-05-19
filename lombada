@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#programa no estilo lombada eletrônica.
+#O limite da via é de 80, mas tem uma margem de erro de 5km a mais.
+#Entre 80 e 85, mostra uma mensagem.
+#passou do 85, da multa.
+
+read -p "Diga a velocidade do carro" vel
+
+[[ vel -le 80  ]] && { echo "velocidade ok" ; exit; } \
+|| [[ vel -le 85  ]] && { echo "Diminua a velocidade"; exit; } \
+|| [[ vel -gt 85  ]] && { echo "MULTADO"; exit;  }

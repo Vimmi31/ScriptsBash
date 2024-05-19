@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#Variavéis#
+user="Vimmi"
+pass="123"
+
+read -p "Login: " login
+read -p "Senha: " passwd
+
+if [[ "$user" = "$login" ]] && [[ "$pass" = "$passwd"  ]]; then
+	echo -e "Logado!\nEntrando no ambiente, aguarde"
+	sleep 2s
+else
+	echo "Login inválido, tente novamente"
+fi

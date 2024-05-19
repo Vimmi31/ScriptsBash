@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+boot=$(ls /boot)
+home=$(ls --color  ~)
+
+echo -e  "No /boot temos:\n$boot "
+
+echo -e  "\nNo /home temos:\n$home"

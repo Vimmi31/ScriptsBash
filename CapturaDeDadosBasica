@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+clear
+echo -e "\nBem vindo!\nAguarde um instante\n"
+#sleep 5
+
+echo -e "Seu nome seu usuario é: $USER\nSua Pasta pessoa fica em $HOME\nSeu shell é o $SHELL\n\n"
+
+read -p "$USER, qual o seu nome real? " nome
+read -p "$nome, qual sua idade?" idade
+
+echo -e "\nEntão seu nome é $nome e sua idade é $idade?(S/N)\n"
+read resp
+
+
+test "$resp" = "S" \
+	&& { echo "Enviando dados!"; exit; }\
+	||   echo então os dados não vão ser enviados
+
+

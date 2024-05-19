@@ -1,0 +1,7 @@
+#!usr/bin/env bash
+
+nome="Vinícius"
+echo"$nome"
+
+#Limpar variavel:
+unset $nome

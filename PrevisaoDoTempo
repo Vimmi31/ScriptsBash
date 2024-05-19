@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#teste de depedencias:#
+#Testando se o curl está instalado, o > serve para enviar oque o which escrever para o vazio, ou seja, descartar.
+if which curl > /dev/null  ; then
+	echo -e "O curl está instalado!\n"
+else
+	echo -e "O curl não está instalado, saindo :(\n"
+	exit;
+fi
+
+#Testando se a internet está funcionando
+if wget -q google.com; then
+	echo -e "A internet está funcionando\n"
+else
+	echo -e "A internet não está funcionando, saindo :(\n"
+	exit;
+fi
+
+#limpando a tela
+clear
+
+#pedindo a cidade para o User
+read -p "Em qual cidade você está?" city
+
+#limpando a tela 
+clear
+
+curl wttr.in/"$city"
+

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo -e "Qual seu nome?"
+read nome
+
+echo -e "\nOlá, $nome!\n"
+
+#comando read com delimitador, ou seja, o read para quando usarmos um caractere especifico:
+echo -e "Se vc digitar @ eu paro"
+read -d @ teste
+echo -e "vc digitou $teste\n"
+
+#comando read com a pergunta embutida:
+
+read -p "No que vc está pensado?!" algo
+echo -e "\nA pergunta anterior foi feita sem echo :0\nE vc estava pensando em $algo"
+
+#Ler o manual do read para ver todas as opçoes

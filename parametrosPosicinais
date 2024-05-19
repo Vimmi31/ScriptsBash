@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "O nome desse programa é: $0"
+echo "O segundo parâmetro é: $1"
+echo "O terceiro é: $2"
+
+case $1 in 
+	--40028922)
+		echo "VOCÊ ACHOU UM EASTER EGG"
+	;;
+	*)
+		exit
+	;;
+esac

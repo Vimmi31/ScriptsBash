@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+
+echo "1=Chrome"
+echo "2=Steam"
+echo "3=Spotify"
+read resp
+
+if  [[ $resp -eq "1" ]] ; then
+	echo "Abre vc"
+elif [[ $resp -eq "2" ]] ;  then
+	echo "VoCẽ tem dedo, clica no icone"	
+elif [[ $resp -eq "3" ]] ; then
+	echo "VC PODE ABRIR SOZINHO"
+else 
+	echo "Você não digitou uma opção valida"
+fi

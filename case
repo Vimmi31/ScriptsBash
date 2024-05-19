@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+read -p "Qual seu nome?" nome
+
+case "$nome" in 
+	#O | significa OU
+	Vinicius|Vini|Vimmi)
+		echo "Olá admin!"
+	;;
+
+	*)
+		echo "Você não deveria estar aqui $nome"
+	;;
+esac	
+

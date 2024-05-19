@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+echo "Entrando na minha home"
+cd /home/vimmi
+echo "Minha home é aquí:"
+pwd
+echo "Aqui tem tudo isso:"
+ls --color

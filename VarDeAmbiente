@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Qual a linguagem do sistema?"
+echo "$LANG"
+
+echo -e "\nQuemm sou eu?"
+echo "$USER"

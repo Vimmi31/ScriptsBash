@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+read -p "Qual seu nome de usuario?" nick
+
+
+# Se o retorno do teste for verdadeiro, ele vai rodar o comando depois do &&, se o retorno for falso, ele vai rodar o comando depois do ||
+test "$nick" = "$USER" \
+&& { echo "Você é o usuario atual do sistema"; exit ;} \
+||   echo "Você não é o usuario atual, SAIA DAQUI!" 
