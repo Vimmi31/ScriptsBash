@@ -1,4 +1,7 @@
 #!/bin/bash
+#Bloqueia a tela com o programa i3-lock, o diferencial do Script é que ele tira prit da tela atual
+#e usa a mesma, mas borrada, como proteção de tela, dando um ar mais elagante ao pc.
+
 i="i.png"
 blur="blur.png"
 
