@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function imprimaBash(){
+	echo "Isso está dentro de uma função de padrão bash"	
+}
+
+
+imprimaPosix(){
+	echo "Isso está dentro de uma função de padrão Posix"
+}
+
+function versaoLinux(){
+	local versao=$(cat /etc/os-release)
+	echo -e "A versão é:\n$versao)"
+	return "255"
+}
+
+versaoLinux
+echo $?

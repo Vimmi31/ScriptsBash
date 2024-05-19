@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #Esse programa demorou 1hr e 40mn para ser feito
-#Programa com o intuito de criar um backup de uma pasta especifica q o usuario usar como parâmetro,
+
+#Programa com o intuito de criar um backup de uma pasta especifica 
+#que o usuario usar como parâmetro,
 #primeiro Script feito por mim. 
 
 
