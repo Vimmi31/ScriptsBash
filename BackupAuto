@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#Esse programa demorou 1hr e 40mn para ser feito
+
+#Verificando se a pasta que quero fazer backup existe (primeiro parametro passado
+[[ -d "$1" ]] && echo "Pasta existe!" ||\
+	{ echo "Pasta não existe...Saindo..."; exit; }
+
+#Verificando se a pasta do Backup existe, senão, cria ela
+[[ -d /$HOME/backup ]] && echo "Pasta existe!" ||\
+	( mkdir /$HOME/backup && echo "Criando a pasta que vai receber o Backup") 
+sleep 1s
+clear
+#Verificando se o tar está instalado, senão pede o usuario instalar. 
+#Se o Tar estiver instalado, compacta a pasta e testa se o processo 
+#de compactação deu certo, se sim continua a aplicação, senão sai dela.
+
+CamTar=$(type -p tar) #CamTar= caminho do tar
+
+if [[ -n  "$CamTar"  ]]; then
+	$CamTar -cvf $HOME/backup.tar $1
+	[[ $? -eq 0 ]] && echo "Compactação concluida!" || { echo "Compactação deu ERRADO, saindo"; exit; }
+else
+ 	echo "Por favor, instale o TAR antes de rodar o Script"
+fi
+
+#Verificando se o backup está criado e enviando o mesmo para a pasta backup.
+if [[ -e /$HOME/backup.tar  ]]; then
+	mv /$HOME/backup.tar /$HOME/backup/
+	[[ $? -eq 0 ]] && echo "Backup enviado para pasta de Backup's, tudo certo :)" \
+		|| echo "A compactação foi concluida, mas não consegui mover ela para a pasta de backups :/"
+else
+	{ echo "Por algum motivo não consegui acahar o arquivo compactado, SAINDO... :("; exit; }
+fi
