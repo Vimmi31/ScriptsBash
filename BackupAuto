@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 #Esse programa demorou 1hr e 40mn para ser feito
+#Programa com o intuito de criar um backup de uma pasta especifica q o usuario usar como parâmetro,
+#primeiro Script feito por mim. 
+
 
 #Verificando se a pasta que quero fazer backup existe (primeiro parametro passado
 [[ -d "$1" ]] && echo "Pasta existe!" ||\
