@@ -1,2 +1,4 @@
 # ScriptsBash
-Scripts que uso no dia a dia, ou que fiz apenas por diversão.
+Scripts que uso no dia a dia, 
+Scripts que fiz por diversão,
+Scripts que fiz para estudar.
