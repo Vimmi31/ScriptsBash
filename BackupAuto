@@ -6,6 +6,10 @@
 #primeiro Script feito por mim. 
 
 
+#verificando se é root
+
+[[ "$UID" -eq "0" ]] && ( echo "Usuario root não pode executar esse programa, saindo..."; exit; ) || true
+
 #Verificando se a pasta que quero fazer backup existe (primeiro parametro passado
 [[ -d "$1" ]] && echo "Pasta existe!" ||\
 	{ echo "Pasta não existe...Saindo..."; exit; }

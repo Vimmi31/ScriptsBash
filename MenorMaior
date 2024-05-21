@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+#Programa que por meio de argumentos posicionais, mostra o maior e o menor valor.
+#set -x
+maior=""
+menor=""
+contadora="1"
+aux=""
+
+while [[ "$contadora" -le "$#" ]]; do #Enquanto a contadora for menor ou igual a qunatidade de parametros passados, rode o laço
+	aux=${@:$contadora:1}  #Na posição da contadora, pega UM valor da variavel $@(especial que guarda todos os valores posicionais passados)
+	[[ $contadora -eq 1  ]] && maior=$aux  menor=$aux  
+	[[ $maior -le $aux ]] && maior=$aux #Checando se o numero atual é maior que o maior numero, se for, adiciona ele na variavel maior
+	[[ $menor -ge $aux ]] && menor=$aux # Checando se o numero atual é menor que o menor numero, se for, adiciona ele não variavel menor
+	contadora=$(($contadora+1))
+done	
+	echo -e  "O maior numero é: $maior\nO menor numero é: $menor"
