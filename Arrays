@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#Array comum:
+
+nome[0]="Costelinha"
+nome[1]="Gohan"
+nome[2]="Kiwi"
+nome[3]="Bob"
+nome[4]="Wylly"
+nome[5]="Negão"
+
+#chamando com indice:
+echo ${#nome[@]}
+
+
+#Array associativo
+#declare -A animal
+#animal[nome]="Kiwi"
+#animal[cor]="Siamesa"
+#animal[especie]="Gata"
+
+#echo -e "O nome do bicho é: ${animal[nome]}\nSua espécie é: ${animal[especie]}"
