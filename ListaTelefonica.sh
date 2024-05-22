@@ -1,5 +1,5 @@
 #Faça uma lista telefônica, que tenha as seguintes funcionalidades:#
-#	1) Adicionar novos contatos(Com Id, Nome, Telefone, CPF)
+#	1) Adicionar novos contatos(Com Id(gerado automaticamente), Nome, Telefone, CPF)
 #	2) Consultar contatos
 
 function inicio(){
@@ -27,8 +27,13 @@ for i in "Id" "Nome" "Telefone" "CPF"; do
     done
 done
 
-#fazer o redirecionamento para o arquivo criado!
-    
+#Faz o redirecionamento para o arquivo criado!
+for i in "Id" "Nome" "Telefone" "CPF"; do
+    echo ${Cont[$i]} >> "$arq"
+    echo >> "$arq"
+done  
 }
 
-addCont
+#Fazer o contato ser salvo na mesma linha
+#Fazer a geração automatica de ID
+#Fazer menu
