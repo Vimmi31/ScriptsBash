@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+arquivo_log="./log.txt"
+
+[[ ! -e "log.txt" ]] && > "$arquivo_log"
+
+
+#testando se um comando funciona, se sim, manda seu retorno para o
+#limbo, senão, manda o retorno para um arquivo de log.
+
+if ls /home > /dev/null 2>>"$arquivo_log"; then
+	echo "O comando LS funcionou"
+else
+	echo "Deu erro! Verifique em seu log.txt"
+fi
+
+
+#here document
+cat > manual.txt <<EOF
+ESTOU ESCREVENDO SEM USAR ECHOS
+
+E ISSO VAI SER PRINTADO NA TELA GRAÇAS AO CAT QUE ESTÁ SENDO ALIMENTADO COM ESSE TEXTO AQUI
+
+
+isso é a saida do script Redirecionamento
+EOF
