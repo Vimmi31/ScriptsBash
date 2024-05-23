@@ -5,7 +5,8 @@
 function inicio(){
 
 local cam=""
-read -e -p "Digite um caminho para o arquivo " cam
+#read -e -p "Digite um caminho para o arquivo " cam
+cam="/home/vimmi/ScriptsBash/"
 #testa até a variavel cam ter um caminho valido
 while [[ ! -d "$cam" ]]; do 
     read -e -p "Digite um caminho para o arquivo " cam
@@ -16,24 +17,86 @@ arq="${cam}lista.txt"
 >> $arq  
 }
 
+function geraId(){
+    local Id=$(wc -l < "$arq")
+    echo $Id
+}
+
 function addCont(){
+    clear
 declare -A Cont
 
 for i in "Id" "Nome" "Telefone" "CPF"; do
-    read -p "Qual o ${i} do contato?" Cont[$i]
-    #Enquanto a cariavel estiver vazia, vai pedir para o useuario a preeencher
-    while [[ -z ${Cont[$i]} ]]; do 
-        read -p "Qual o ${i} do contato?" Cont[$i]
-    done
+    if [[ $i = "Id" ]]; then
+        Cont[$i]=$(geraId)
+        else
+            read -p "Qual o ${i} do contato?" Cont[$i]
+            #Enquanto a cariavel estiver vazia, vai pedir para o useuario a preeencher
+            while [[ -z ${Cont[$i]} ]]; do 
+                read -p "Qual o ${i} do contato?" Cont[$i]
+            done
+    fi
 done
 
-#Faz o redirecionamento para o arquivo criado!
-for i in "Id" "Nome" "Telefone" "CPF"; do
-    echo ${Cont[$i]} >> "$arq"
-    echo >> "$arq"
-done  
+echo ${Cont[Id]}¨${Cont[Nome]}¨${Cont[Telefone]}¨${Cont[CPF]} >> $arq
+[[ $? -ne 0 ]] && echo "Algo deu errado ao adicionar o Contato, Saindo..." exit 1
 }
 
-#Fazer o contato ser salvo na mesma linha
-#Fazer a geração automatica de ID
-#Fazer menu
+function ConsCont(){
+    clear
+    PS3="Selecione como você deseja fazer a busca: "
+    opcoes=('Por nome' 'Por ID' 'Voltar ao menu')
+    select opc in "${opcoes[@]}"; do
+        case $REPLY in
+            1)
+                echo "Opção por nome"
+                ;;
+            2)  
+                echo "Opção por ID"
+                ;;
+            3)
+                echo "Voltando ao menu"
+                Menu
+                ;;
+            *)
+                echo "Opção inválida"
+                ;;
+        esac
+    done
+}
+
+
+
+function Menu(){
+    clear
+
+    PS3="Olá! O que deseja realizar?"
+    opcoes=('Adicionar contato' 'Consultar Contato' 'SAIR')
+    select opc in "${opcoes[@]}"; do
+        case $REPLY in
+            1)
+                addCont
+                Menu
+                ;;
+            2)  
+                ConsCont
+                Menu
+                ;;
+            3)
+                echo "SAINDO"
+                exit 0
+                ;;
+            *)
+                echo "Opção inválida"
+                Menu
+                ;;
+        esac
+    done
+
+}
+
+inicio
+sleep 2
+Menu
+
+#Fazer Consulta de contatos
