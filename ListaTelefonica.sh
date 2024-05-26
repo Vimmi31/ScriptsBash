@@ -1,15 +1,17 @@
 #Faça uma lista telefônica, que tenha as seguintes funcionalidades:#
 #	1) Adicionar novos contatos(Com Id(gerado automaticamente), Nome, Telefone, CPF)
 #	2) Consultar contatos
-
+#   3) Remover contatos
 function inicio(){
-
-    cam=""
-    read -e -p "Digite um caminho para o arquivo " cam
+    read -e -p "Digite o diretório para o arquivo " cam
     #testa até a variavel cam ter um caminho valido
     while [[ ! -d "$cam" ]]; do 
-        read -e -p "Digite um caminho para o arquivo " cam
+        read -e -p "Digite um diretório valido para o arquivo " cam
     done
+    #testa se o ultimo caractere é "/" senão for, adiciona ele no final do caminho
+    local aux="${cam: -1}" 
+    [[ "${aux}" != "/" ]] && cam="${cam}/"
+
     arq="${cam}lista.txt"
     #testa se o arquivo de dados já existe, senão, cria ele, se sim não faz nada.
     [[ -e $arq ]] && echo "Os dados serão adicionados no arquivo que já existe " || echo "Criando o arquivo de dados" 
@@ -18,6 +20,7 @@ function inicio(){
 
 function geraId(){
     local Id=$(wc -l < "$arq")
+    Id=$((Id+1)) # os $(( )) significa q é uma expressão matematica
     echo $Id
 }
 
@@ -89,23 +92,21 @@ function ConsCont(){
 
 function RemCont(){
     read -p "Diga qual o id do contato que deseja remover" id
-    while [[ "$id" =~ [a-zA-Z] ]]; do ##Testa se na String tem letras
+    while [[ "$id" =~ [a-zA-Z] || "$id" = "" ]]; do ##Testa se na String tem letras ou se ela é vazia
                     clear
                     echo "Atenção o id possui apenas numeros, digite novamente"
                     read -p "Qual Id você deseja remover? " id
                 done
-
-    sed "${id}d" $arq > temp.txt && mv  $arq && echo "Removido com sucesso" || echo "algo deu errado an remoção do contato"
-    echo $cam
-    read
-
+    #${id}s/.*/REMOVIDO/: Isso substitui todo o conteúdo (.*) da linha especificada por REMOVIDO. a PALAVRA é necessário para garantir que a linha não seja completamente removida; assim, ela ficará visivelmente vazia.            
+    sed "${id}s/.*/REMOVIDO/" ${arq} > ${cam}temp.txt && mv "${cam}temp.txt" $arq && echo "Removido com sucesso" || echo "algo deu errado na remoção do contato" exit 1
+    read -p "Aperte qualquer tecla para voltar ao menu anterior"
 }
 
 function Menu(){
     clear
 
     PS3="Olá! O que deseja realizar?"
-    opcoes=('Adicionar contato' 'Consultar Contato' 'Remover Contato' 'SAIR')
+    opcoes=('Adicionar Contato' 'Consultar Contato' 'Remover Contato' 'SAIR')
     select opc in "${opcoes[@]}"; do
         case $REPLY in
             1)
@@ -120,7 +121,7 @@ function Menu(){
                 RemCont
                 Menu
                 ;;
-            3)
+            4)
                 clear
                 echo "SAINDO"
                 sleep 1
@@ -137,8 +138,5 @@ function Menu(){
 }
 
 inicio
-sleep 2
+sleep 1
 Menu
-
-#Arrumar a função de remover contato, mexi na função de Inicio
-#Arrumar função de inicio, para testar se o caminho do arquivo está certo
