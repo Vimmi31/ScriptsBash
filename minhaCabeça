@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+a="A"
+while :; do
+	echo -n $a
+	a="${a}A"
+	sleep 0.02
+done
